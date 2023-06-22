@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :warehouse do
-    code { "MyString" }
-    name { "MyString" }
-    location { "MyString" }
+    code { Faker::Alphanumeric.alpha(number: 8) }
+    name { Faker::Name.name }
+    location { Faker::Address.city }
   end
 end
