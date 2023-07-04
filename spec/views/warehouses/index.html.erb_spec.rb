@@ -2,18 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "warehouses/index", type: :view do
   before(:each) do
-    assign(:warehouses, [
-      Warehouse.create!(
-        code: "Code",
-        name: "Name",
-        location: "Location"
-      ),
-      Warehouse.create!(
-        code: "Code",
-        name: "Name",
-        location: "Location"
-      )
-    ])
+    assign(:warehouses, create_list(:warehouse, 2))
   end
 
   it "renders a list of warehouses" do

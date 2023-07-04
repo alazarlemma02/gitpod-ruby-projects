@@ -3,12 +3,27 @@
 <h1>Warehouses</h1>
 
 <div id="warehouses">
-  <% @warehouses.each do |warehouse| %>
-    <%= render warehouse %>
-    <p>
-      <%= link_to "Show this warehouse", warehouse %>
-    </p>
-  <% end %>
-</div>
+  <table border="1">
+    <thead>
+      <tr>
+        <th>Code</th>
+        <th>Name</th>
+        <th>Location</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @warehouses.each do |warehouse| %>
+        <tr>
+          <td><%= warehouse.code %></td>
+          <td><%= warehouse.name %></td>
+          <td><%= warehouse.location %></td>
+          <td>
+            <%= link_to "Show", warehouse %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
 <%= link_to "New warehouse", new_warehouse_path %>

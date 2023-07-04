@@ -1,6 +1,5 @@
 require 'rails_helper'
 
-
 RSpec.describe "/warehouses", type: :request do
   let(:valid_attributes) do
     {
@@ -26,10 +25,6 @@ RSpec.describe "/warehouses", type: :request do
     end
 
     it 'displays warehouses' do
-      # warehouse1 = create(:warehouse)
-      # warehouse2 = create(:warehouse)
-      # warehouse3 = create(:warehouse)
-      # 3.times { create(:warehouse) }
       warehouses = create_list(:warehouse, 3)
       get warehouses_url
       data = assigns(:warehouses)
@@ -100,19 +95,22 @@ RSpec.describe "/warehouses", type: :request do
 
   describe "PATCH /update" do
     context "with valid parameters" do
-      let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
-      }
+      let(:new_attributes) do
+        {
+          name: Faker::Name.name
+        }        
+      end
 
       it "updates the requested warehouse" do
-        warehouse = Warehouse.create! valid_attributes
+        warehouse = create(:warehouse)
+        expect(warehouse.name).not_to eq new_attributes[:name]
         patch warehouse_url(warehouse), params: { warehouse: new_attributes }
         warehouse.reload
-        skip("Add assertions for updated state")
+        expect(warehouse.name).to eq new_attributes[:name]
       end
 
       it "redirects to the warehouse" do
-        warehouse = Warehouse.create! valid_attributes
+        warehouse = create(:warehouse)
         patch warehouse_url(warehouse), params: { warehouse: new_attributes }
         warehouse.reload
         expect(response).to redirect_to(warehouse_url(warehouse))
@@ -122,7 +120,7 @@ RSpec.describe "/warehouses", type: :request do
     context "with invalid parameters" do
     
       it "renders a response with 422 status (i.e. to display the 'edit' template)" do
-        warehouse = Warehouse.create! valid_attributes
+        warehouse = create(:warehouse)
         patch warehouse_url(warehouse), params: { warehouse: invalid_attributes }
         expect(response).to have_http_status(:unprocessable_entity)
       end
@@ -132,14 +130,14 @@ RSpec.describe "/warehouses", type: :request do
 
   describe "DELETE /destroy" do
     it "destroys the requested warehouse" do
-      warehouse = Warehouse.create! valid_attributes
+      warehouse = create(:warehouse)
       expect {
         delete warehouse_url(warehouse)
       }.to change(Warehouse, :count).by(-1)
     end
 
     it "redirects to the warehouses list" do
-      warehouse = Warehouse.create! valid_attributes
+      warehouse = create(:warehouse)
       delete warehouse_url(warehouse)
       expect(response).to redirect_to(warehouses_url)
     end
