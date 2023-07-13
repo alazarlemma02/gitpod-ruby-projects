@@ -1,0 +1,29 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Warehouses</h1>
+
+<div id="warehouses">
+  <table class="table table-hover table-striped table-bordered">
+    <thead>
+      <tr>
+        <th>Code</th>
+        <th>Name</th>
+        <th>Location</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @warehouses.each do |warehouse| %>
+        <tr>
+          <td><%= warehouse.code %></td>
+          <td><%= warehouse.name %></td>
+          <td><%= warehouse.location %></td>
+          <td>
+            <%= link_to "Show", warehouse %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+<%= link_to "New warehouse", new_warehouse_path %>
