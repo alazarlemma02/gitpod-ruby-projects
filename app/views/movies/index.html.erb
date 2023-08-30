@@ -1,0 +1,26 @@
+<div>
+<table id="movies" class="table table-striped ">
+  <thead class="table-dark">
+    <tr>
+      <th>Code</th>
+      <th>Name</th>
+      <th>Release Date</th>
+      <th>Genere</th>
+      <th>Actions</th> <!-- New column for actions -->
+    </tr>
+  </thead>
+  <tbody>
+    <% @movies.each do |movie| %>
+      <tr>
+        <td><%= movie.code %></td>
+        <td><%= movie.name %></td>
+        <td><%= movie.release_date %></td>
+        <td><%= movie.other %></td>
+        <td><%= link_to "Show this movie", movie %></td> <!-- Show link in the same row -->
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to "New movie", new_movie_path %>
+</div>
