@@ -24,17 +24,10 @@ RSpec.describe ArticlesController, type: :controller do
         )
       end
     end
-
-
-
-
   end
-
-
-
-  # it "should route to a specific article" do
-  #   expect(get: '/articles/1').to route_to('articles#show', id:'1')
-  # end
+  it "should route to a specific article" do
+    expect(get: '/articles/1').to route_to('articles#show', id:'1')
+  end
 
 end
 
